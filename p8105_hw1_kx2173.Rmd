@@ -12,20 +12,70 @@ library(tidyverse)
 
 ## Problem 1
 
-```{r, echo = FALSE}
+Firstly, I create a data frame.
+
+```{r}
 
 # Make sure the randomly generated values are same and reproducible
+
 set.seed(1)
 
 # Create a data frame
+
 pro1_df = tibble(
-  vec_num = rnorm (10),
-  vec_logical = if_else (vec_num > 0, TRUE, FALSE),
-  vec_char = c ("First", "Second", "Third", "Forth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth", "Tenth"),
-  vec_factor = factor (c("A", "B", "C", "B", "A", "C", "B", "B", "C", "A"))
+  vec_num = rnorm(10),
+  vec_logical = if_else(vec_num > 0, TRUE, FALSE),
+  vec_char = c("First", "Second", "Third", "Forth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth", "Tenth"),
+  vec_factor = factor(c("A", "B", "C", "B", "A", "C", "B", "B", "C", "A"))
 )
 
 # Call data frame
+
 pro1_df
+
+```
+
+Then, I extract each variable and calculate means, however, some mean output are "NA"
+
+```{r}
+
+# Extract each variable and calculate means
+
+ext_num = pull(pro1_df, vec_num)
+mean(ext_num)
+# the mean of the variable "vec_num" is 0.1322028
+
+ext_logical = pull(pro1_df, vec_logical)
+mean(ext_logical)
+# the mean of the variable "vec_logical" is 0.6
+
+ext_char = pull(pro1_df, vec_char)
+mean(ext_char)
+# This doesn't work, because this is not a numerical or logical argument
+
+ext_factor = pull(pro1_df, vec_factor)
+mean(ext_factor)
+# This doesn't work, because this is not a numerical or logical argument
+
+```
+
+In order to fix that, I use as.numeric to convert my logical, character and factor variables, but only logical and factor variables worked.
+
+```{r, echo=FALSE}
+
+# Convert variable to numerical variables and calculate the mean
+
+num_char = as.numeric(ext_char)
+# all elements are "NA" after converting
+
+num_factor = as.numeric(ext_factor)
+# all elements in ext_factor are converted to "1,2,and 3" after converting
+mean(num_factor)
+# mean = 2
+
+num_logical = as.numeric(ext_logical)
+# converted to "1 and 0", 1 for TRUE and 0 for FALSE
+mean(num_logical)
+# mean = 0.6
 ```
 
