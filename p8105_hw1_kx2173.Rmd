@@ -13,14 +13,19 @@ library(tidyverse)
 ## Problem 1
 
 ```{r, echo = FALSE}
+
+# Make sure the randomly generated values are same and reproducible
 set.seed(1)
 
+# Create a data frame
 pro1_df = tibble(
   vec_num = rnorm (10),
   vec_logical = if_else (vec_num > 0, TRUE, FALSE),
   vec_char = c ("First", "Second", "Third", "Forth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth", "Tenth"),
   vec_factor = factor (c("A", "B", "C", "B", "A", "C", "B", "B", "C", "A"))
 )
+
+# Call data frame
 pro1_df
 ```
 
