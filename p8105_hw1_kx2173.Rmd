@@ -80,3 +80,21 @@ mean(num_logical)
 
 ```
 
+
+## Problem 2
+
+Load the penguin data set
+
+```{r}
+data("penguins", package = "palmerpenguins")
+```
+
+Now, I see what the data looks like `r view(penguins)`, including names of variables: `r names(penguins)`. 
+The first 6 values of variable in data set: `r head(penguins)`
+The last 6 values of variable in data set: `r tail(penguins)`
+The data set has `r nrow(penguins)` rows and `r ncol(penguins)` columns. 
+The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm = TRUE)`.
+
+
+
+
