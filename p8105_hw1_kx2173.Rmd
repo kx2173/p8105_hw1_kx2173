@@ -96,7 +96,7 @@ The data set has `r nrow(penguins)` rows and `r ncol(penguins)` columns.
 The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm = TRUE)`.
 
 
-Finally, we made a scatterplot.
+Finally, we made a scatterplot and save it as a .png file.
 
 ```{r}
 
@@ -106,9 +106,10 @@ plot_df = tibble(
   flipper_length = penguins$flipper_length_mm,
 )
 
-ggplot(plot_df, aes(x = bill_length, y = flipper_length, color = penguins$species)) + geom_point()
+penguins_plot = ggplot(plot_df, aes(x = bill_length, y = flipper_length, color = penguins$species)) + geom_point()
 
 # Save the scatter plot to project directory
+ggsave("First scatter plot.png", penguins_plot)
 
 ```
 
