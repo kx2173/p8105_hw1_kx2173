@@ -89,11 +89,30 @@ Load the penguin data set
 data("penguins", package = "palmerpenguins")
 ```
 
-Now, I see what the data looks like `r view(penguins)`, including names of variables: `r names(penguins)`. 
-The first 6 values of variable in data set: `r head(penguins)`
-The last 6 values of variable in data set: `r tail(penguins)`
+
+#### Short description:
+the names of variables are: `r names(penguins)`. 
 The data set has `r nrow(penguins)` rows and `r ncol(penguins)` columns. 
 The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm = TRUE)`.
+
+
+Finally, we made a scatterplot.
+
+```{r}
+
+# Make a scatter plot
+plot_df = tibble(
+  bill_length = penguins$bill_length_mm,
+  flipper_length = penguins$flipper_length_mm,
+)
+
+ggplot(plot_df, aes(x = bill_length, y = flipper_length, color = penguins$species)) + geom_point()
+
+# Save the scatter plot to project directory
+
+```
+
+
 
 
 
